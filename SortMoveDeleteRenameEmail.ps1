@@ -1,8 +1,8 @@
-<#For execution: powershell.exe -ExecutionPolicy Unrestricted -File C:\MediaFiles\Script\Move_Delete_Email.ps1 "%N" "%D"#>
+<#For execution: powershell.exe -ExecutionPolicy Unrestricted -File C:\MediaFiles\Script\Move_Delete_Email.ps1 "param1" "param2"#>
 $FileName = $args[0] <#Parameters passed #>
 $Directory = $args[1]
 $PC = $env:computername
-add-content C:\MediaFiles\Log\log.txt "$TorrentName `n" <#Create output log#>
+add-content C:\MediaFiles\Log\log.txt "$FileName `n" <#Create output log#>
 Move-Item C:\MediaFiles\Completed\*\* -include *.mkv,*.mp4,*.flv,*.avi,*.m4v C:\MediaFiles\Completed -force <#Move all video format items from subfolders into the root folder#>
 Remove-Item C:\MediaFiles\Completed\* -exclude *.mkv,*.mp4,*.flv,*.avi,*.m4v -recurse -force <#Delete all items and subfolders, excluding the video formats#>
 filebot -rename -non-strict C:\MediaFiles\Completed\* --log-file MDE.txt <#Calling filebot to rename all files in the directory (opportunistic rename) and log the output#>
@@ -10,12 +10,12 @@ Get-ChildItem C:\MediaFiles\Completed\* -recurse | where-object {$_.length -gt 1
 Get-ChildItem C:\MediaFiles\Completed\* -recurse | where-object {$_.length -lt 1000000000} | move-item -destination C:\MediaFiles\TV_Shows <#Move all items less than 1GB into TV Shows folder#>
 move-item C:\MediaFiles\Movies\* "\\192.168.1.66\Multimedia\Media Server\Plex\Pushed\Movies" <#Move movies to NAS Address & Directory#>
 move-item C:\MediaFiles\TV_Shows\* "\\192.168.1.66\Multimedia\Media Server\Plex\Pushed\TV Shows" <#Move TV Shows to NAS Address & Directory#>
-$EmailFrom = ìxxxxx@outlook.comî <#Email sender#>
-$EmailTo = ìxxxxx@xxxxx.comî<#Email recipient#>
-$Subject = ìFile Sortedî <#Email subject#>
-$Body = ìPC: $PC `n `n Name: $FileName `n `n Directory: $Directoryî <#Email body#>
-$SMTPServer = ìsmtp-mail.outlook.comî <#Outlook server outgoing address#>
+$EmailFrom = ‚Äúxxxxx@outlook.com‚Äù <#Email sender#>
+$EmailTo = ‚Äúxxxxx@xxxxx.com‚Äù<#Email recipient#>
+$Subject = ‚ÄúFile Sorted‚Äù <#Email subject#>
+$Body = ‚ÄúPC: $PC `n `n Name: $FileName `n `n Directory: $Directory‚Äù <#Email body#>
+$SMTPServer = ‚Äúsmtp-mail.outlook.com‚Äù <#Outlook server outgoing address#>
 $SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, 587) <#Outlook server outgoing port#>
 $SMTPClient.EnableSsl = $true <#SSL Enabled#>
-$SMTPClient.Credentials = New-Object System.Net.NetworkCredential(ìxxxxxxx@outlook.comî, ìxxxxxxxxxxxxî); <#Sender Email Address & Pasword#>
+$SMTPClient.Credentials = New-Object System.Net.NetworkCredential(‚Äúxxxxxxx@outlook.com‚Äù, ‚Äúpassword‚Äù); <#Sender Email Address & Pasword#>
 $SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body) <#Send email#>
