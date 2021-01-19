@@ -13,7 +13,7 @@ Quick notes:
 
  - SortMoveDeleteRenameEmail utilizes FileBot for the renaming of media files. Movie and TV files are the intended target, however it is set to be opportunistic and FileBot might rename any recognizable media format including music videos and songs (if the extensions list in line 6 is changed to the relevant extensions), provided that the data is stored in the databases where FileBot draws information. More information here: https://www.filebot.net/forums/viewtopic.php?t=4695. Remove line 8 if this functionality is not required.
  
- FileBot can be downloaded here: https://www.filebot.net/ and a license for FileBot is required and can be purchased from the FileBot site here (it is worth it!): https://www.filebot.net/purchase.html.
+     -FileBot can be downloaded here: https://www.filebot.net/ and a license for FileBot is required and can be purchased from the FileBot site here (it is worth it!): https://www.filebot.net/purchase.html.
  
  - SortMoveDeleteRenameEmail can sort files by size, aligning them in the correct folders if desired. The current threshold for file sizing is 1GB as seen in line 9 where any files found greater than 1GB are sorted into the movie folder and again in line 10, where any files less than 1GB are sorted into a TV show folder. Where 1000000000 bytes = 1GB. Remove lines 9 & 10 if this functionality is not required.
 
