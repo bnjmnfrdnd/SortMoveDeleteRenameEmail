@@ -11,7 +11,7 @@ To use the script in an application, place the execution command from line 1 'po
 
 Quick notes:
 
- - SortMoveDeleteRenameEmail will move all files that have an extension that matches those in the extensions listed in line 6 & 7 and remove files whose extensions does not match. Remove lines 6 & 7 if this functionality is not required.
+ - SortMoveDeleteRenameEmail will move all files that have an extension that matches those in the extensions listed in line 6 & 7 and remove files whose extensions do not match. Remove lines 6 & 7 if this functionality is not required.
 
  - SortMoveDeleteRenameEmail utilizes FileBot for the renaming of media files. Movie and TV files are the intended target, however it is set to be opportunistic and FileBot might rename any recognizable media format including music videos and songs (if the extensions list in line 6 is changed to the relevant extensions), provided that the data is stored in the databases where FileBot draws information. More information here: https://www.filebot.net/forums/viewtopic.php?t=4695. Remove line 8 if this functionality is not required.
  
